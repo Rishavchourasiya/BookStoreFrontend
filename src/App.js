@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React,{useEffect, useState,} from 'react'
 import Navbar from './Component/Navbar';
 import Main from './Component/Main';
 import Addcart from './Component/Addcart';
@@ -14,6 +14,14 @@ const App = () => {
     if (ispresent) return;
     setcart([...cart, item]);
   };
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    setcart(storedCart);
+  }, []);
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
+
   return (
     <div>
       <Navbar size={cart.length} setshow={setshow} />

@@ -13,4 +13,4 @@ const Main = ({handleitem}) => {
   )
 }
 
-export default Main ;
+export default Main;

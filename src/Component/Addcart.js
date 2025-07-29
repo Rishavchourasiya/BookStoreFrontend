@@ -3,15 +3,6 @@ import React, { useEffect, useState } from 'react';
 const Addcart = ({ cart, setcart }) => {
   const [price, setPrice] = useState(0);
 
-  // Update price total
-  const handleprice = () => {
-    let ans = 0;
-    cart.forEach((item) => {
-      ans += item.amount * item.price;
-    });
-    setPrice(ans);
-  };
-
   // Increment quantity
   const handleIncrement = (id) => {
     const updatedCart = cart.map((item) =>
@@ -37,6 +28,14 @@ const Addcart = ({ cart, setcart }) => {
   };
 
   useEffect(() => {
+    const handleprice = () => {
+      let ans = 0;
+      cart.forEach((item) => {
+        ans += item.amount * item.price;
+      });
+      setPrice(ans);
+    };
+
     handleprice();
   }, [cart]);
 
@@ -45,7 +44,7 @@ const Addcart = ({ cart, setcart }) => {
       {cart.map((item) => (
         <div className='cart_box' key={item.id}>
           <div className='cart_img'>
-            <img src={item.img} alt='image error' />
+            <img src={item.img} alt='' />
             <p>{item.title}</p>
           </div>
           <div className='cart_button'>
